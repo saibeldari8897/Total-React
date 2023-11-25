@@ -1,25 +1,14 @@
 import TodoItem1 from "./TodoItem1";
-function TodoItems() {
-  let ListItems = [
-    {
-      todoname: "do exercise",
-      tododate: "24/11/2023",
-    },
-    {
-      todoname: "go to exercise",
-      tododate: "25/11/2023",
-    },
-  ];
+import styles from "./TodoItems.module.css";
+const TodoItems = ({ todoItems }) => {
   return (
     <>
-      <div className="items-container">
-        <TodoItem1
-          todoName={ListItems.todoName}
-          todoDate={ListItems.todoDate}
-        ></TodoItem1>
-        <TodoItem1 todoName="play cricket" todoDate="24/11/2023"></TodoItem1>
+      <div className={styles.itemsContainer}>
+        {todoItems.map((item) => (
+          <TodoItem1 todoName={item.Name} todoDate={item.Date}></TodoItem1>
+        ))}
       </div>
     </>
   );
-}
+};
 export default TodoItems;
