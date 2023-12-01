@@ -1,44 +1,33 @@
-import { useState } from "react";
+import { useRef } from "react";
 import { IoMdAddCircle } from "react-icons/io";
 
 function AddTodo({ onNewItem }) {
-  const [todoName, setTodoName] = useState("");
-  const [todoDate, setTodoDate] = useState("");
-  const newName = (event) => {
-    setTodoName(event.target.value);
-  };
-  const newDate = (event) => {
-    setTodoDate(event.target.value);
-  };
-  const addButton = () => {
+  const newName = useRef("");
+  const newDate = useRef("");
+
+  const addButton = (event) => {
+    event.preventDefault();
+    const todoName = newName.current.value;
+    const todoDate = newDate.current.value;
     onNewItem(todoName, todoDate);
-    setTodoName("");
-    setTodoDate("");
+    newName.current.value = "";
+    newDate.current.value = "";
   };
   return (
     <div className="container text-center">
-      <div className="row kg-row">
+      <form className="row kg-row" onSubmit={addButton}>
         <div className="col-6">
-          <input
-            type="text"
-            placeholder="Enter Todo Here"
-            value={todoName}
-            onChange={newName}
-          />
+          <input type="text" placeholder="Enter Todo Here" ref={newName} />
         </div>
         <div className="col-4">
-          <input type="date" value={todoDate} onChange={newDate} />
+          <input type="date" ref={newDate} />
         </div>
         <div className="col-2">
-          <button
-            type="button"
-            className="btn btn-success kg-button"
-            onClick={addButton}
-          >
+          <button type="submit" className="btn btn-success kg-button">
             <IoMdAddCircle />
           </button>
         </div>
-      </div>
+      </form>
     </div>
   );
 }
