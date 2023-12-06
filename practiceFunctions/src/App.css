@@ -1,0 +1,9 @@
+.App{
+  display: flex;
+}
+.Post{
+  width: 100%;
+}
+.sidebar{
+  min-height: 800px;
+}
