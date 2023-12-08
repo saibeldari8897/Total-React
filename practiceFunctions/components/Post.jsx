@@ -1,4 +1,4 @@
-function Post() {
+const Post = () => {
   return (
     <>
       <form>
@@ -42,5 +42,5 @@ function Post() {
       </form>
     </>
   );
-}
+};
 export default Post;
