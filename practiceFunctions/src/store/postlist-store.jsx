@@ -6,35 +6,46 @@ export const PostList = createContext({
   deleteItems: () => {},
 });
 const postListReducer = (currPostItems, action) => {
-  return postListReducer(currPostItems);
+  let newPostItems = currPostItems;
+  if (action.type === "deletePost") {
+    newPostItems = currPostItems.filter(
+      (post) => post.id !== action.payLoad.postId
+    );
+  } else if (action.type === "addPost") {
+    newPostItems = [action.payLoad, ...currPostItems];
+  }
+  return newPostItems;
 };
 const PostListProvider = ({ children }) => {
   const [postList, dispatchPostList] = useReducer(
     postListReducer,
     allPostItems
   );
-  const addItems = () => {};
-  const deleteItems = () => {};
+  const addItems = (userId, title, content, reactions, hashtags) => {
+    dispatchPostList({
+      type: "addPost",
+      payLoad: {
+        id: userId,
+        title: title,
+        body: content,
+        reactions: reactions,
+        tags: hashtags,
+      },
+    });
+  };
+  const deleteItems = (postId) => {
+    dispatchPostList({
+      type: "deletePost",
+      payLoad: {
+        postId,
+      },
+    });
+  };
   return (
     <PostList.Provider value={{ postList, addItems, deleteItems }}>
       {children}
     </PostList.Provider>
   );
 };
-const allPostItems = [
-  {
-    id: "01",
-    title: "OFF TO CLZ",
-    body: "So happy to be back in clz",
-    reactions: 100,
-    tags: ["like", "share", "Comment"],
-  },
-  {
-    id: "02",
-    title: "OFF TO Bengaluru",
-    body: "Back in bengaluru",
-    reactions: 100,
-    tags: ["like", "share", "Comment"],
-  },
-];
+const allPostItems = [];
 export default PostListProvider;

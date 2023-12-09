@@ -8,5 +8,11 @@
   min-height: 800px;
 }
 .postCard{
-  margin: 7%;
+  margin: 5%;
+}
+.button{
+  margin: 0% 3%;
+}
+.postform{
+  margin: 5%;
 }
