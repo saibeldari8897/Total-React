@@ -1,10 +1,10 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Header from "../components/header";
-import Footer from "../components/footer";
-import Sidebar from "../components/sidebar";
-import PostListItemsContainer from "../components/postListItemsContainer";
-import Post from "../components/Post";
+import Sidebar from "./components/sidebar";
+import Header from "./components/Header";
+import Footer from "./components/footer";
+import Post from "./components/Post";
+import PostListItemsContainer from "./components/postListItemsContainer";
 import PostListProvider from "./store/postlist-store";
 import { useState } from "react";
 function App() {

@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import CreatePost from "./createPost";
-import { PostList } from "../src/store/postlist-store";
+import { PostList } from "../store/postlist-store";
 const PostListItemsContainer = () => {
   const { postList } = useContext(PostList);
   return (
