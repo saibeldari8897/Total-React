@@ -1,7 +1,9 @@
-import { useRef } from "react";
+import { useContext, useRef } from "react";
 import { IoMdAddCircle } from "react-icons/io";
+import { contextProvider } from "../App";
 
-function AddTodo({ onNewItem }) {
+function AddTodo() {
+  const { handleNewItem } = useContext(contextProvider);
   const newName = useRef("");
   const newDate = useRef("");
 
@@ -9,7 +11,7 @@ function AddTodo({ onNewItem }) {
     event.preventDefault();
     const todoName = newName.current.value;
     const todoDate = newDate.current.value;
-    onNewItem(todoName, todoDate);
+    handleNewItem(todoName, todoDate);
     newName.current.value = "";
     newDate.current.value = "";
   };

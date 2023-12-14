@@ -1,6 +1,9 @@
+import { useContext } from "react";
 import TodoItem1 from "./TodoItem1";
 import styles from "./TodoItems.module.css";
-const TodoItems = ({ todoItems, onClickDelete }) => {
+import { contextProvider } from "../App";
+const TodoItems = () => {
+  const { todoItems } = useContext(contextProvider);
   return (
     <>
       <div className={styles.itemsContainer}>
@@ -9,7 +12,6 @@ const TodoItems = ({ todoItems, onClickDelete }) => {
             key={item.Name}
             todoName={item.Name}
             todoDate={item.Date}
-            onClickDelete={onClickDelete}
           ></TodoItem1>
         ))}
       </div>
