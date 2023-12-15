@@ -15,6 +15,17 @@ const Post = () => {
     const content = contentElement.current.value;
     const reactions = reactionsElement.current.value;
     const hashtags = hashtagElement.current.value.split(" ");
+    /*fetch("https://dummyjson.com/posts/add", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        title: "I am in love with someone.",
+        userId: 5,
+       
+      }),
+    })
+      .then((res) => res.json())
+      .then(console.log);*/
     addItems(userId, title, content, reactions, hashtags);
     userIdElement.current.value = "";
     titleElement.current.value = "";
