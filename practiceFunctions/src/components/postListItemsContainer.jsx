@@ -1,19 +1,9 @@
 import { useContext, useState } from "react";
 import CreatePost from "./createPost";
 import { PostList } from "../store/postlist-store";
+import { useLoaderData } from "react-router-dom";
 const PostListItemsContainer = () => {
-  const { postList, addInitialPosts } = useContext(PostList);
-  const [dataFetching, setDataFetching] = useState(false);
-  if (!dataFetching) {
-    console.log("button clicked");
-    fetch("https://dummyjson.com/posts")
-      .then((res) => res.json())
-      .then((data) => {
-        addInitialPosts(data.posts);
-      });
-    setDataFetching(true);
-  }
-
+  const postList = useLoaderData();
   return (
     <>
       {postList.map((post) => (
@@ -21,5 +11,12 @@ const PostListItemsContainer = () => {
       ))}
     </>
   );
+};
+export const PostLoader = () => {
+  return fetch("https://dummyjson.com/posts")
+    .then((res) => res.json())
+    .then((data) => {
+      return data.posts;
+    });
 };
 export default PostListItemsContainer;
