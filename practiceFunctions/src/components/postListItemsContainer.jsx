@@ -1,4 +1,3 @@
-import { useContext, useState } from "react";
 import CreatePost from "./createPost";
 import { PostList } from "../store/postlist-store";
 import { useLoaderData } from "react-router-dom";
