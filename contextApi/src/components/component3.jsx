@@ -21,7 +21,7 @@ const Component2 = () => {
   };
   return (
     <Tools.Provider value={{ data, addName }}>
-      <center>
+      <center style={{ margin: "10%" }}>
         <Component1></Component1>
         <Component></Component>
       </center>
