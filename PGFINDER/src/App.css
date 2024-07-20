@@ -1,0 +1,16 @@
+.container {
+  display: flex;
+  padding: 0; /* padding cannot be negative */
+}
+
+.con2 {
+  width: 100%; /* changed from 120% to ensure it fits within the container */
+}
+
+.posts-container {
+  display: flex;
+  gap: 20px; /* added for spacing between posts */
+  margin-left: 20px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
