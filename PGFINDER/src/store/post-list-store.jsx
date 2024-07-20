@@ -9,11 +9,13 @@ export const Postlist = createContext({
 const pgArray = [
   {
     id: "1",
-    name: "lakshmi",
+    pgname: "lakshmi",
+    pgadress: "6th Street,2nd main road,Aswath Nagar,Marathahalli,Bengaluru",
   },
   {
-    id: "2",
-    name: "lakshmi",
+    id: "1",
+    pgname: "veereBramhendra",
+    pgadress: "9th Street,2nd main road,Aswath Nagar,Marathahalli,Bengaluru",
   },
 ];
 
