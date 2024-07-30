@@ -1,4 +1,4 @@
-import { createContext, useReducer } from "react";
+import { createContext, useReducer, useEffect } from "react";
 
 export const Postlist = createContext({
   postlist: [],
@@ -6,37 +6,43 @@ export const Postlist = createContext({
   delpost: () => {},
 });
 
-const pgArray = [
-  {
-    id: "1",
-    pgname: "lakshmi",
-    pgadress: "6th Street,2nd main road,Aswath Nagar,Marathahalli,Bengaluru",
-  },
-  {
-    id: "1",
-    pgname: "veereBramhendra",
-    pgadress: "9th Street,2nd main road,Aswath Nagar,Marathahalli,Bengaluru",
-  },
-];
-
-const postListReducer = (currPostList, action) => {
-  return currPostList;
+const postListReducer = (state, action) => {
+  switch (action.type) {
+    case "SET_POSTLIST":
+      return action.payload;
+    case "ADD_POST":
+      return [...state, action.payload];
+    case "DELETE_POST":
+      return state.filter((post) => post.id !== action.payload);
+    default:
+      return state;
+  }
 };
 
 const PostlistProvider = ({ children }) => {
-  const [postlist, dispatchPostList] = useReducer(postListReducer, pgArray);
+  const [postlist, dispatchPostList] = useReducer(postListReducer, []);
 
-  const addpost = () => {};
-  const delpost = () => {};
+  useEffect(() => {
+    fetch("http://localhost:8080/items")
+      .then((res) => res.json())
+      .then((data) => {
+        // Ensure correct extraction of data, if necessary
+        const items = data.items && data.items[0] ? data.items[0] : [];
+        dispatchPostList({ type: "SET_POSTLIST", payload: items });
+      })
+      .catch((error) => console.error("Error fetching posts:", error));
+  }, []); // Empty dependency array ensures this effect runs only once
+
+  const addpost = (post) => {
+    dispatchPostList({ type: "ADD_POST", payload: post });
+  };
+
+  const delpost = (postId) => {
+    dispatchPostList({ type: "DELETE_POST", payload: postId });
+  };
 
   return (
-    <Postlist.Provider
-      value={{
-        postlist,
-        addpost,
-        delpost,
-      }}
-    >
+    <Postlist.Provider value={{ postlist, addpost, delpost }}>
       {children}
     </Postlist.Provider>
   );

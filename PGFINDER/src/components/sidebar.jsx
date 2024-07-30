@@ -40,7 +40,7 @@ const Sidebar = ({ selectedTab, setSelectedTab }) => {
           }}
         >
           <a
-            href="#"
+            href="Create NewPg"
             className={`nav-link text-white ${
               selectedTab === "Create NewPg" && "active"
             }`}
