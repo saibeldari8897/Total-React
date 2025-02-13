@@ -10,27 +10,30 @@ import DeletePg from "./components/deletePg";
 
 function App() {
   const [selectedTab, setSelectedTab] = useState("Home");
-  return (
-    <>
-      <div className="container">
-        <Sidebar
-          selectedTab={selectedTab}
-          setSelectedTab={setSelectedTab}
-        ></Sidebar>
-        <div className="con2">
-          <Header></Header>
-          {selectedTab === "Home" ? (
-            <Pglist />
-          ) : selectedTab === "Create NewPg" ? (
-            <CreatePg />
-          ) : (
-            <DeletePg />
-          )}
 
-          <Footer></Footer>
-        </div>
+  // Function to render the selected tab's component
+  const renderSelectedTab = () => {
+    switch (selectedTab) {
+      case "Home":
+        return <Pglist />;
+      case "Create NewPg":
+        return <CreatePg />;
+      case "DeletePg":
+        return <DeletePg />;
+      default:
+        return <Pglist />;
+    }
+  };
+
+  return (
+    <div className="container">
+      <Sidebar selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
+      <div className="con2">
+        <Header />
+        {renderSelectedTab()}
+        <Footer />
       </div>
-    </>
+    </div>
   );
 }
 

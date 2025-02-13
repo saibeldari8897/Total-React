@@ -2,11 +2,21 @@ import { useContext } from "react";
 import { Tools } from "./component3";
 
 const Component1 = () => {
-  const { data } = useContext(Tools);
+  const { data, delName } = useContext(Tools);
   return (
     <>
       {data.map((item) => (
-        <h3 key={item}>{item}</h3>
+        <h3 key={item}>
+          {item}
+          <button
+            onClick={() => {
+              console.log("clicked");
+              delName(item);
+            }}
+          >
+            Del
+          </button>
+        </h3>
       ))}
     </>
   );
