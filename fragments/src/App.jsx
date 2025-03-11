@@ -4,7 +4,7 @@ function App() {
   return (
     <>
       <h1>Total Items</h1>
-      <ul class="list-group">
+      <ul className="list-group">
         <ItemList></ItemList>
       </ul>
     </>
