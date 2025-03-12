@@ -55,3 +55,5 @@ try {
 } catch (error) {
   console.error(error);
 }
+let a =10;
+console.log(a);
