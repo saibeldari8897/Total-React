@@ -5,8 +5,8 @@ const Component1 = () => {
   const { data, delName } = useContext(Tools);
   return (
     <>
-      {data.map((item) => (
-        <h3 key={item}>
+      {data.map((item, index) => (
+        <h3 key={index}>
           {item}
           <button
             onClick={() => {

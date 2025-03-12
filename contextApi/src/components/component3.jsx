@@ -1,7 +1,6 @@
 import { createContext, useReducer } from "react";
 import Component from "./component1";
 import Component1 from "./component2";
-import { type } from "@testing-library/user-event/dist/cjs/utility/type.js";
 
 export const Tools = createContext();
 const dataReducer = (currName, action) => {
