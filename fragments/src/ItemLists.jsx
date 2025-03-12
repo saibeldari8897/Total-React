@@ -1,18 +1,42 @@
-import { useState } from "react";
+import { useReducer, useState } from "react";
 
-function ItemList() {
+const foodItemsReducer = (currFoodItems, action) => {
+  let foodItems = currFoodItems;
+  if (action.type === "NEW_ITEM") {
+    foodItems = [...foodItems, action.payload.itemName];
+  } else if (action.type === "DEL_ITEM") {
+    foodItems = foodItems.filter(
+      (fooditem) => fooditem !== action.payload.itemName
+    );
+  }
+  return foodItems;
+};
+
+const ItemList = () => {
   //let foodItems = ["first item", "second item", "third item"];
 
-  const [foodItems, setFoodItems] = useState([]);
+  const [foodItems, dispatchFoodItems] = useReducer(foodItemsReducer, []);
+
+  //const [foodItems, setFoodItems] = useState([]);
   const handleEnter = (event) => {
     if (event.key == "Enter") {
-      let newUtem = [...foodItems, event.target.value];
-      setFoodItems(newUtem);
+      let newItems = {
+        type: "NEW_ITEM",
+        payload: {
+          itemName: event.target.value,
+        },
+      };
+      dispatchFoodItems(newItems);
     }
   };
   const deleteListItem = (item) => {
-    let newItems = foodItems.filter((fooditem) => fooditem !== item);
-    setFoodItems(newItems);
+    let newItems = {
+      type: "DEL_ITEM",
+      payload: {
+        itemName: item,
+      },
+    };
+    dispatchFoodItems(newItems);
   };
 
   return (
@@ -30,5 +54,5 @@ function ItemList() {
       ))}
     </>
   );
-}
+};
 export default ItemList;
